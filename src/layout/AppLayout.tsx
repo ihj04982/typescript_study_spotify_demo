@@ -1,13 +1,135 @@
-import React from "react";
-import { Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
+import { Box, Button, Card, styled, Typography } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import SearchIcon from "@mui/icons-material/Search";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import AddIcon from "@mui/icons-material/Add";
+
+const Layout = styled("div")({
+  display: "flex",
+  height: "100vh",
+  padding: "8px",
+});
+
+const Sidebar = styled("div")(({ theme }) => ({
+  width: "331px",
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
+}));
+
+const ContentBox = styled(Box)(({ theme }) => ({
+  borderRadius: "8px",
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.text.primary,
+  width: "100%",
+  padding: "20px",
+  marginBottom: "8px",
+  marginRight: "8px",
+}));
+
+const NavList = styled("ul")({
+  listStyle: "none",
+  padding: 0,
+  margin: 0,
+});
+
+const StyledNavLink = styled(NavLink)(({ theme }) => ({
+  textDecoration: "none",
+  display: "flex",
+  alignItems: "center",
+  gap: "20px",
+  color: theme.palette.text.secondary,
+  "&:hover": {
+    color: theme.palette.text.primary,
+  },
+  "&:active": {
+    color: theme.palette.text.primary,
+  },
+}));
+
+const LibraryBox = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  padding: "8px",
+  justifyContent: "space-between",
+});
+
+const LibraryTitleBox = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+});
+
+const LibraryAddButton = styled(Button)({});
+
+const CreatePlaylistCard = styled(Card)({
+  padding: "20px",
+  borderRadius: "8px",
+});
+
+const CreatePlaylistButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.text.primary,
+  color: "black",
+  "&:hover": {
+    backgroundColor: theme.palette.text.secondary,
+  },
+  "&:active": {
+    backgroundColor: theme.palette.text.secondary,
+  },
+  fontWeight: 700,
+  padding: "6px 16px",
+  borderRadius: "30px",
+  marginTop: "20px",
+}));
 
 const AppLayout = () => {
-    return (
-    <div>
-    Sidebar
-        <Outlet />
-    </div>
-    )
+  return (
+    <Layout>
+      <Sidebar>
+        <ContentBox>
+          <NavList>
+            <StyledNavLink to="/">
+              <HomeIcon />
+              <Typography variant="h2" fontWeight={700}>
+                Home
+              </Typography>
+            </StyledNavLink>
+            <StyledNavLink to="/search">
+              <SearchIcon />
+              <Typography variant="h2" fontWeight={700}>
+                Search
+              </Typography>
+            </StyledNavLink>
+          </NavList>
+        </ContentBox>
+        <ContentBox height={"100%"}>
+          <LibraryBox>
+            <LibraryTitleBox>
+              <BookmarkIcon />
+              <Typography variant="h2" fontWeight={700}>
+                Your Library
+              </Typography>
+            </LibraryTitleBox>
+            <LibraryAddButton color="primary" size="large">
+              <AddIcon />
+            </LibraryAddButton>
+          </LibraryBox>
+          <CreatePlaylistCard>
+            <Typography variant="h2" fontWeight={700}>
+              Create your first playlist
+            </Typography>
+            <Typography>It's easy, we will help you</Typography>
+            <CreatePlaylistButton>Create playlist</CreatePlaylistButton>
+          </CreatePlaylistCard>
+        </ContentBox>
+      </Sidebar>
+      <Outlet />
+    </Layout>
+  );
 };
 
 export default AppLayout;
