@@ -2,8 +2,8 @@ import { NavLink, Outlet } from "react-router";
 import { Box, Button, Card, styled, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import AddIcon from "@mui/icons-material/Add";
+import LibraryHead from "../common/components/LibraryHead";
+import Library from "../common/components/Library";
 
 const Layout = styled("div")({
   display: "flex",
@@ -46,25 +46,10 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   "&:hover": {
     color: theme.palette.text.primary,
   },
-  "&:active": {
+  "&.active": {
     color: theme.palette.text.primary,
   },
 }));
-
-const LibraryBox = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  padding: "8px",
-  justifyContent: "space-between",
-});
-
-const LibraryTitleBox = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-});
-
-const LibraryAddButton = styled(Button)({});
 
 const CreatePlaylistCard = styled(Card)({
   padding: "20px",
@@ -107,24 +92,8 @@ const AppLayout = () => {
           </NavList>
         </ContentBox>
         <ContentBox height={"100%"}>
-          <LibraryBox>
-            <LibraryTitleBox>
-              <BookmarkIcon />
-              <Typography variant="h2" fontWeight={700}>
-                Your Library
-              </Typography>
-            </LibraryTitleBox>
-            <LibraryAddButton color="primary" size="large">
-              <AddIcon />
-            </LibraryAddButton>
-          </LibraryBox>
-          <CreatePlaylistCard>
-            <Typography variant="h2" fontWeight={700}>
-              Create your first playlist
-            </Typography>
-            <Typography>It's easy, we will help you</Typography>
-            <CreatePlaylistButton>Create playlist</CreatePlaylistButton>
-          </CreatePlaylistCard>
+          <LibraryHead />
+          <Library />
         </ContentBox>
       </Sidebar>
       <Outlet />
