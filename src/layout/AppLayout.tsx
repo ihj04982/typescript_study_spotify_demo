@@ -2,9 +2,9 @@ import { NavLink, Outlet } from "react-router";
 import { Box, Button, Card, styled, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
-import LibraryHead from "../common/components/LibraryHead";
-import Library from "../common/components/Library";
-import Navbar from "../common/components/Navbar";
+import LibraryHead from "./LibraryHead";
+import Library from "./Library";
+import Navbar from "./Navbar";
 
 const Layout = styled("div")({
   display: "flex",

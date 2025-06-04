@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import LoginButton from "./LoginButton";
+import LoginButton from "../common/components/LoginButton";
 
 const Navbar = () => {
   return (
