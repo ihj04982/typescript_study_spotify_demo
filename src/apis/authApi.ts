@@ -1,11 +1,13 @@
 import axios from "axios";
-import { clientSecret } from "../configs/authConfig";
-import { clientId } from "../configs/authConfig";
-import { threadId } from "worker_threads";
+import { clientId, clientSecret } from "../configs/authConfig";
 import { IClientCredentialTokenResponse } from "../models/auth";
 
 const encodedBase64 = (data: string): string => {
-  return Buffer.from(data).toString("base64");
+  if (typeof window !== "undefined") {
+    return btoa(data);
+  } else {
+    return Buffer.from(data).toString("base64");
+  }
 };
 
 export const getClientCredentialToken = async (): Promise<IClientCredentialTokenResponse> => {
