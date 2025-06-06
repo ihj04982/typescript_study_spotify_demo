@@ -10,6 +10,8 @@ const Layout = styled("div")({
   display: "flex",
   height: "100vh",
   padding: "8px",
+  width: "100%",
+  boxSizing: "border-box",
 });
 
 const Sidebar = styled("div")(({ theme }) => ({
@@ -30,6 +32,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
   padding: "20px",
   marginBottom: "8px",
   marginRight: "8px",
+  boxSizing: "border-box",
 }));
 
 const NavList = styled("ul")({

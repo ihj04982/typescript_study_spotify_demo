@@ -7,8 +7,6 @@ import Card from "../../../common/components/Card";
 const NewReleases = () => {
   const { data, isLoading, error } = useGetNewReleases();
 
-  console.log(data);
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
