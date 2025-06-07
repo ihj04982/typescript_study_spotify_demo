@@ -11,3 +11,13 @@ export interface IImage {
 export interface IRestriction {
   reason?: string;
 }
+
+export interface IFollowers {
+  href?: string;
+  total?: number;
+}
+
+export interface IExplicitContent {
+  filter_enabled: boolean;
+  filter_locked: boolean;
+}
