@@ -9,6 +9,7 @@ const useGetCurrentUserProfile = (): UseQueryResult<IUser, Error> => {
     queryKey: ["current-user-profile"],
     queryFn: getCurrentUserProfile,
     enabled: !!access_token,
+    staleTime: 0,
   });
 };
 
