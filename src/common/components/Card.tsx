@@ -13,7 +13,7 @@ const CardContainer = styled("div")(({ theme }) => ({
   padding: "10px",
   borderRadius: "8px",
   "&:hover": {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.secondary,
     "& .play-button-wrapper": {
       opacity: 1,
       transform: "translateY(0)",

@@ -1,16 +1,9 @@
+import { IApiResponse } from "./apiResponse";
 import { IArtist } from "./artist";
 import { IExternalUrls, IImage, IRestriction } from "./commonType";
 
 export interface IGetNewReleasesResponse {
-  albums: {
-    href: string;
-    limit: number;
-    next: string;
-    offset: number;
-    previous: string | null;
-    total: number;
-    items: ISimplifiedAlbum[];
-  };
+  albums: IApiResponse<ISimplifiedAlbum>;
 }
 
 export interface ISimplifiedAlbum {
