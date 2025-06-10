@@ -1,13 +1,13 @@
-import { Card, ListItemAvatar, ListItemButton, ListItemText, styled, Typography } from "@mui/material";
+import { Button, Card, ListItemButton, ListItemText, styled, Typography } from "@mui/material";
 import { MusicNote } from "@mui/icons-material";
 import { PlayArrow } from "@mui/icons-material";
+import DefaultImage from "./DefaultImage";
 
-const PlaylistItemContainer = styled(ListItemButton)(({ theme, selected }) => ({
+const PlaylistItemContainer = styled(ListItemButton)(({ theme }) => ({
   gap: "10px",
   padding: "8px",
   width: "100%",
   borderRadius: "6px",
-  backgroundColor: selected ? theme.palette.action.hover : "transparent",
   "&:hover": {
     backgroundColor: theme.palette.action.hover,
     "& .playlist-image": {
@@ -27,23 +27,14 @@ const ImageWrapper = styled("div")({
   transition: `opacity 0.2s ease-in-out`,
 });
 
-const PlaylistImage = styled("img")(({ theme }) => ({
+const PlaylistImage = styled("img")({
   width: "100%",
   height: "100%",
   objectFit: "cover",
   borderRadius: "4px",
-}));
+});
 
-const EmptyImage = styled(Card)(({ theme }) => ({
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: theme.palette.text.secondary,
-}));
-
-const PlayButton = styled("div")({
+const PlayButton = styled(Button)({
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -51,10 +42,7 @@ const PlayButton = styled("div")({
   opacity: 0,
   transition: `opacity 0.2s ease-in-out`,
   color: "white",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "24px",
+  background: "none !important",
 });
 
 const TruncatedText = styled(Typography)({
@@ -71,21 +59,22 @@ interface PlaylistItemProps {
   id: string;
   type: string;
   handleClick: (id: string) => void;
+  selected: boolean;
 }
 
-const PlaylistItem = ({ image, name, type, ownerName, id, handleClick }: PlaylistItemProps) => {
+const PlaylistItem = ({ image, name, type, ownerName, id, handleClick, selected }: PlaylistItemProps) => {
   return (
-    <PlaylistItemContainer>
+    <PlaylistItemContainer onClick={() => handleClick(id)} selected={selected}>
       <ImageWrapper>
         {image ? (
           <PlaylistImage className="playlist-image" src={image} alt={name} />
         ) : (
-          <EmptyImage className="playlist-image">
-            <MusicNote />
-          </EmptyImage>
+          <div className="playlist-image" style={{ width: "100%", height: "100%" }}>
+            <DefaultImage iconSize={20} />
+          </div>
         )}
-        <PlayButton className="play-button">
-          <PlayArrow />
+        <PlayButton className="play-button" disableRipple>
+          <PlayArrow fontSize="large" />
         </PlayButton>
       </ImageWrapper>
       <ListItemText

@@ -1,4 +1,9 @@
-import { IGetCurrentUserPlaylistsRequest, TGetCurrentUserPlaylistsResponse } from "../models/playlist";
+import {
+  IGetCurrentUserPlaylistsRequest,
+  IGetPlaylistRequest,
+  IPlaylist,
+  TGetCurrentUserPlaylistsResponse,
+} from "../models/playlist";
 import api from "../utils/api";
 
 export const getCurrentUserPlaylists = async ({
@@ -15,5 +20,20 @@ export const getCurrentUserPlaylists = async ({
     return response.data;
   } catch (error) {
     throw new Error("Failed to get current user playlists");
+  }
+};
+
+export const getPlaylist = async (params: IGetPlaylistRequest): Promise<IPlaylist> => {
+  try {
+    const response = await api.get(`/playlists/${params.playlist_id}`, {
+      params: {
+        market: params.market,
+        fields: params.fields,
+        additional_types: params.additional_types,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to get playlist");
   }
 };

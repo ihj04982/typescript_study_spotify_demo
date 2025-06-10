@@ -2,6 +2,12 @@ export interface IExternalUrls {
   spotify: string;
 }
 
+export interface IExternalIds {
+  isrc?: string;
+  ean?: string;
+  upc?: string;
+}
+
 export interface IImage {
   url: string;
   height: number | null;
@@ -29,4 +35,9 @@ export interface IOwner {
   type?: string;
   uri?: string;
   display_name?: string | null;
+}
+
+export interface ICopyright {
+  text: string;
+  type: "C" | "P";
 }
