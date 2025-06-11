@@ -12,6 +12,7 @@ const Layout = styled("div")({
   padding: "8px",
   width: "100%",
   boxSizing: "border-box",
+  gap: "8px",
 });
 
 const Sidebar = styled("div")(({ theme }) => ({
@@ -33,7 +34,21 @@ const ContentBox = styled(Box)(({ theme }) => ({
   marginBottom: "8px",
   marginRight: "8px",
   boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "column",
+  minHeight: 0,
 }));
+
+const OutletContainer = styled("div")({
+  flex: 1,
+  minHeight: 0,
+  overflow: "auto",
+  "&::-webkit-scrollbar": {
+    display: "none",
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
+  },
+});
 
 const NavList = styled("ul")({
   listStyle: "none",
@@ -82,7 +97,9 @@ const AppLayout = () => {
       </Sidebar>
       <ContentBox>
         <Navbar />
-        <Outlet />
+        <OutletContainer>
+          <Outlet />
+        </OutletContainer>
       </ContentBox>
     </Layout>
   );

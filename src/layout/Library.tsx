@@ -8,9 +8,9 @@ import useGetCurrentUserProfile from "../hooks/useGetCurrentUserProfile";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
-const PlayListContainer = styled("div")(({ theme }) => ({
+const PlaylistContainer = styled("div")(({ theme }) => ({
   height: "100%",
-  maxHeight: "calc(100vh - 240px)",
+  maxHeight: "calc(100vh - 220px)",
   overflowY: "auto",
   "&::-webkit-scrollbar": {
     display: "none",
@@ -53,12 +53,12 @@ const Library = () => {
       {!data || data?.pages[0].total === 0 ? (
         <EmptyPlaylist />
       ) : (
-        <PlayListContainer>
+        <PlaylistContainer>
           {data.pages.map((page, index) => (
             <Playlist key={index} playlists={page.items} />
           ))}
           <div ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</div>
-        </PlayListContainer>
+        </PlaylistContainer>
       )}
     </div>
   );
