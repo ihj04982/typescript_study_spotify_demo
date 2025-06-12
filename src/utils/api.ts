@@ -1,6 +1,5 @@
 import axios from "axios";
 import { SPOTIFY_BASE_URL } from "../configs/commonConfig";
-import { useNavigate } from "react-router";
 
 const api = axios.create({
   baseURL: SPOTIFY_BASE_URL,
@@ -22,8 +21,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response.status === 401) {
       localStorage.removeItem("access_token");
-      const navigate = useNavigate();
-      navigate("/login");
+      window.location.href = "/login";
     }
     return Promise.reject(error);
   }
