@@ -24,7 +24,6 @@ const LibraryHead = () => {
   const { mutate: createPlaylist } = useCreatePlaylist();
 
   const handleCreatePlaylist = () => {
-    console.log("createPlaylist");
     createPlaylist({ name: "내 플레이리스트" });
   };
 
