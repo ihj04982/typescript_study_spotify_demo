@@ -15,14 +15,21 @@ const PlaylistPageContainer = styled("div")(({ theme }) => ({
   flexDirection: "column",
   gap: "20px",
   height: "100%",
+  overflow: "hidden",
   [theme.breakpoints.down("sm")]: {
     gap: "16px",
   },
 }));
 
 const PlaylistItemContainer = styled("div")({
-  flex: 1,
+  flex: "1 1 0%",
   minHeight: 0,
+  overflowY: "auto",
+  scrollbarWidth: "none",
+  msOverflowStyle: "none",
+  "::-webkit-scrollbar": {
+    display: "none",
+  },
 });
 
 const PlaylistHeader = styled("div")(({ theme }) => ({
