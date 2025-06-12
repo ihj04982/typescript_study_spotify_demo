@@ -63,3 +63,10 @@ export interface IGetPlaylistItemsRequest extends IGetPlaylistRequest {
 }
 
 export type TGetPlaylistItemsResponse = IApiResponse<IPlaylistTrack>;
+
+export interface ICreatePlaylistRequest {
+  name: string;
+  public?: boolean;
+  collaborative?: boolean;
+  description?: string;
+}

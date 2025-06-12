@@ -1,4 +1,5 @@
 import {
+  ICreatePlaylistRequest,
   IGetCurrentUserPlaylistsRequest,
   IGetPlaylistItemsRequest,
   IGetPlaylistRequest,
@@ -48,5 +49,20 @@ export const getPlaylistItems = async (params: IGetPlaylistItemsRequest): Promis
     return response.data;
   } catch (error) {
     throw new Error("Failed to get playlist items");
+  }
+};
+
+export const createPlaylist = async (user_id: string, params: ICreatePlaylistRequest): Promise<IPlaylist> => {
+  try {
+    const { name, public: isPublic, collaborative, description } = params;
+    const response = await api.post(`/users/${user_id}/playlists`, {
+      name,
+      public: isPublic,
+      collaborative,
+      description,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to create playlist");
   }
 };

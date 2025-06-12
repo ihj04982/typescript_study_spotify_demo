@@ -24,11 +24,11 @@ const PlaylistContainer = styled("div")(({ theme }) => ({
 
 const Library = () => {
   const { ref, inView } = useInView();
+  const { data: user } = useGetCurrentUserProfile();
   const { data, isLoading, error, hasNextPage, isFetchingNextPage, fetchNextPage } = useGetCurrentUserPlaylists({
     limit: 10,
     offset: 0,
   });
-  const { data: user } = useGetCurrentUserProfile();
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {

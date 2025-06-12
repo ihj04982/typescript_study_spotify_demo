@@ -3,6 +3,7 @@ import { getCurrentUserPlaylists } from "../apis/playlistApi";
 import { IGetCurrentUserPlaylistsRequest } from "../models/playlist";
 
 const useGetCurrentUserPlaylists = ({ limit, offset }: IGetCurrentUserPlaylistsRequest) => {
+  const accessToken = localStorage.getItem("access_token");
   return useInfiniteQuery({
     queryKey: ["current-user-playlists"],
     queryFn: ({ pageParam = 0 }) => {
@@ -17,6 +18,7 @@ const useGetCurrentUserPlaylists = ({ limit, offset }: IGetCurrentUserPlaylistsR
       }
       return undefined;
     },
+    enabled: !!accessToken,
   });
 };
 

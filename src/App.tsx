@@ -9,6 +9,7 @@ const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage/SearchPage"));
 const SearchWithKeywordPage = React.lazy(() => import("./pages/SearchPage/SearchWithKeywordPage"));
 const PlaylistDetailPage = React.lazy(() => import("./pages/PlaylistPage/PlaylistDetailPage"));
+const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
 
 function App() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -32,6 +33,7 @@ function App() {
           <Route path="playlist/:id" element={<PlaylistDetailPage />} />
           {/* <Route path="/playlist" element={<PlayListPage />} /> */}
         </Route>
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Suspense>
   );
