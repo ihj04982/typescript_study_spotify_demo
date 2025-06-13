@@ -1,5 +1,4 @@
-import { Button, Card, ListItemButton, ListItemText, styled, Typography } from "@mui/material";
-import { MusicNote } from "@mui/icons-material";
+import { Button, ListItemButton, ListItemText, styled, Typography } from "@mui/material";
 import { PlayArrow } from "@mui/icons-material";
 import DefaultImage from "./DefaultImage";
 

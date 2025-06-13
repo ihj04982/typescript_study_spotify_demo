@@ -50,6 +50,8 @@ export interface IEpisode {
   show?: IShow;
 }
 
+export type ISimplifiedEpisode = Omit<IEpisode, "show">;
+
 export interface IShow {
   available_markets?: string[];
   copyrights: ICopyright[];
@@ -68,4 +70,30 @@ export interface IShow {
   type: "show";
   uri: string;
   total_episodes: number;
+}
+
+export interface ISimplifiedAudiobook {
+  author: {
+    name: string;
+  }[];
+  available_markets: string[];
+  copyrights: ICopyright[];
+  description: string;
+  html_description: string;
+  edition?: string;
+  explicit: boolean;
+  external_urls: IExternalUrls;
+  href: string;
+  id: string;
+  images: IImage[];
+  languages: string[];
+  media_type: string;
+  name: string;
+  narrators: {
+    name: string;
+  }[];
+  publisher: string;
+  type: "audiobook";
+  uri: string;
+  total_chapters: number;
 }

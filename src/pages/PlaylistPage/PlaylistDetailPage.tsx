@@ -9,6 +9,8 @@ import PlaylistDetailTable from "./components/PlaylistDetailTable";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { PAGE_LIMIT } from "../../configs/commonConfig";
+import EmptyPlaylistWithSearch from "./components/EmptyPlaylistWithSearch";
+import LoadMoreSection from "../../common/components/LoadMoreSection";
 
 const PlaylistPageContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -112,21 +114,12 @@ const SpotifyLogo = styled("img")({
   objectFit: "cover",
 });
 
-const LoadMoreSection = styled("div")({
-  display: "flex",
-  justifyContent: "center",
-  padding: "16px 0",
-});
-
 const PlaylistDetailPage = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data: playlist, isLoading, error } = useGetPlaylist({ playlist_id: id || "" });
 
-  const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: "100px",
-  });
+  const { ref, inView } = useInView();
 
   const {
     data: playlistItems,
@@ -177,7 +170,7 @@ const PlaylistDetailPage = () => {
       </PlaylistHeader>
       <PlaylistItemContainer>
         {playlist?.tracks?.total === 0 ? (
-          <Typography sx={{ padding: "20px", textAlign: "center" }}>This playlist is empty.</Typography>
+          <EmptyPlaylistWithSearch />
         ) : (
           <div>
             <PlaylistDetailTable playlistItems={playlistItems} />
