@@ -22,15 +22,7 @@ const EmptyPlaylistWithSearch = () => {
   const { ref, inView } = useInView();
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useSearchItemsByKeyword({
     q: keyword,
-    type: [
-      SearchType.TRACK,
-      SearchType.ALBUM,
-      SearchType.ARTIST,
-      SearchType.PLAYLIST,
-      SearchType.SHOW,
-      SearchType.EPISODE,
-      SearchType.AUDIOBOOK,
-    ],
+    type: [SearchType.TRACK],
   });
 
   useEffect(() => {
