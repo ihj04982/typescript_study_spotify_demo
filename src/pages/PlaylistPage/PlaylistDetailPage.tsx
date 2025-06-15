@@ -170,7 +170,7 @@ const PlaylistDetailPage = () => {
       </PlaylistHeader>
       <PlaylistItemContainer>
         {playlist?.tracks?.total === 0 ? (
-          <EmptyPlaylistWithSearch />
+          <EmptyPlaylistWithSearch playlistId={playlist.id || ""} />
         ) : (
           <div>
             <PlaylistDetailTable playlistItems={playlistItems} />

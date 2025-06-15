@@ -70,3 +70,12 @@ export interface ICreatePlaylistRequest {
   collaborative?: boolean;
   description?: string;
 }
+
+export interface IAddItemsToPlaylistRequest {
+  position?: number;
+  uris?: string[];
+}
+
+export interface IAddItemsToPlaylistResponse {
+  snapshot_id: string;
+}

@@ -1,4 +1,6 @@
 import {
+  IAddItemsToPlaylistRequest,
+  IAddItemsToPlaylistResponse,
   ICreatePlaylistRequest,
   IGetCurrentUserPlaylistsRequest,
   IGetPlaylistItemsRequest,
@@ -64,5 +66,21 @@ export const createPlaylist = async (user_id: string, params: ICreatePlaylistReq
     return response.data;
   } catch (error) {
     throw new Error("Failed to create playlist");
+  }
+};
+
+export const addItemsToPlaylist = async (
+  playlist_id: string,
+  params: IAddItemsToPlaylistRequest
+): Promise<IAddItemsToPlaylistResponse> => {
+  const { position, uris } = params;
+  try {
+    const response = await api.post(`/playlists/${playlist_id}/tracks`, {
+      position,
+      uris,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to add items to playlist");
   }
 };

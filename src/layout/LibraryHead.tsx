@@ -3,7 +3,6 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AddIcon from "@mui/icons-material/Add";
 import { styled } from "@mui/material/styles";
 import useCreatePlaylist from "../hooks/useCreatePlaylist";
-import { idText } from "typescript";
 
 const Head = styled("div")({
   display: "flex",

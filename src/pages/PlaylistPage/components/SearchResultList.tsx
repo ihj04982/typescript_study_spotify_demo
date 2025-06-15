@@ -3,8 +3,10 @@ import { PAGE_LIMIT } from "../../../configs/commonConfig";
 import { ITrack } from "../../../models/track";
 import DefaultImage from "../../../common/components/DefaultImage";
 import { AddCircleOutline, MoreHoriz } from "@mui/icons-material";
+import useAddItemsToPlaylist from "../../../hooks/useAddItemsToPlaylist";
 
 interface ISearchResultListProps {
+  playlistId: string;
   list: ITrack[];
   pageIndex: number;
   keyword: string;
@@ -25,7 +27,18 @@ const ActionIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const SearchResultList = ({ list, pageIndex, keyword }: ISearchResultListProps) => {
+const SearchResultList = ({ playlistId, list, pageIndex, keyword }: ISearchResultListProps) => {
+  const { mutate: addItemsToPlaylist } = useAddItemsToPlaylist(playlistId);
+
+  const handleAddItemsToPlaylist = (item: ITrack) => {
+    if (item.uri) {
+      addItemsToPlaylist({
+        uris: [item.uri],
+        position: 0,
+      });
+    }
+  };
+
   return (
     <div>
       {list.length === 0 && <Typography variant="body1">No results found for {keyword}</Typography>}
@@ -54,7 +67,7 @@ const SearchResultList = ({ list, pageIndex, keyword }: ISearchResultListProps) 
             <ActionIconButton size="small">
               <MoreHoriz />
             </ActionIconButton>
-            <ActionIconButton size="small">
+            <ActionIconButton size="small" onClick={() => handleAddItemsToPlaylist(item)}>
               <AddCircleOutline />
             </ActionIconButton>
           </div>

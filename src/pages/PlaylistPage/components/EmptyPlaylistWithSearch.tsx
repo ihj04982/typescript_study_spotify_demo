@@ -17,7 +17,11 @@ const SearchTextField = styled(TextField)({
   marginBottom: "10px",
 });
 
-const EmptyPlaylistWithSearch = () => {
+interface EmptyPlaylistWithSearchProps {
+  playlistId: string;
+}
+
+const EmptyPlaylistWithSearch = ({ playlistId }: EmptyPlaylistWithSearchProps) => {
   const [keyword, setKeyword] = useState<string>("");
   const { ref, inView } = useInView();
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useSearchItemsByKeyword({
@@ -57,7 +61,9 @@ const EmptyPlaylistWithSearch = () => {
       {isLoading && <LoadingSpinner />}
       {data?.pages.map((item, pageIndex) => {
         if (!item.tracks) return false;
-        return <SearchResultList list={item.tracks?.items} pageIndex={pageIndex} keyword={keyword} />;
+        return (
+          <SearchResultList playlistId={playlistId} list={item.tracks?.items} pageIndex={pageIndex} keyword={keyword} />
+        );
       })}
       <LoadMoreSection ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</LoadMoreSection>
     </div>
