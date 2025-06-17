@@ -1,23 +1,7 @@
 import { TableCell, TableRow, styled } from "@mui/material";
 import { IPlaylistTrack } from "../../../models/playlist";
 import { IEpisode, ITrack } from "../../../models/track";
-
-const formatDuration = (ms: number): string => {
-  const totalSeconds = Math.floor(ms / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-};
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-
-  return date.toLocaleDateString("ko-KR", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-};
+import { formatDuration, formatDate } from "../../../utils/format";
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:hover": {

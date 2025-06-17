@@ -2,7 +2,7 @@ import { Box, InputAdornment, styled, TextField } from "@mui/material";
 import LoginButton from "../common/components/LoginButton";
 import useGetCurrentUserProfile from "../hooks/useGetCurrentUserProfile";
 import UserProfile from "./UserProfile";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Search } from "@mui/icons-material";
 import { useState } from "react";
 
@@ -20,10 +20,17 @@ const Navbar = () => {
   const [keyword, setKeyword] = useState<string>("");
   const { data: userProfile } = useGetCurrentUserProfile();
   const location = useLocation();
-  const isSearchPage = location.pathname === "/search";
+  const isSearchPage = location.pathname.includes("/search");
+  const navigate = useNavigate();
 
   const handleSearchKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
+  };
+
+  const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && keyword) {
+      navigate(`/search/${keyword}`);
+    }
   };
 
   return (
@@ -42,6 +49,7 @@ const Navbar = () => {
             }}
             value={keyword}
             onChange={handleSearchKeyword}
+            onKeyDown={handleSearch}
             placeholder="What do you want to listen to?"
           />
         )}

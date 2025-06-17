@@ -28,7 +28,7 @@ const useSearchItemsByKeyword = (params: ISearchRequestParams) => {
       }
       return undefined;
     },
-    enabled: !!params.q && params.q.trim() !== "",
+    enabled: !!params.q && params.q.trim() !== "" && !!clientCredentialToken,
   });
 };
 

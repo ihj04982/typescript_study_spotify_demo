@@ -2,7 +2,7 @@ import { Card, Grid, ListItem, styled, Typography } from "@mui/material";
 import ErrorMessage from "../../common/components/ErrorMessage";
 import LoadingSpinner from "../../common/components/LoadingSpinner";
 import useGetBrowseCategories from "../../hooks/useGetBrowseCategories";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 const PAGE_LIMIT = 50;
