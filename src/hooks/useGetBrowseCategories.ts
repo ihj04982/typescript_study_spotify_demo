@@ -1,11 +1,19 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getBrowseCategories } from "../apis/categoryApi";
 import { IBrowseCategoryRequest } from "../models/category";
+import useClientCredentialToken from "./useClientCredentialToken";
 
 const useGetBrowseCategories = (params: IBrowseCategoryRequest) => {
+  const clientCredentialToken = useClientCredentialToken();
+
   return useInfiniteQuery({
     queryKey: ["browse-categories", params],
-    queryFn: ({ pageParam = 0 }) => getBrowseCategories({ ...params, offset: pageParam }),
+    queryFn: ({ pageParam = 0 }) => {
+      if (!clientCredentialToken) {
+        throw new Error("No token available");
+      }
+      return getBrowseCategories(clientCredentialToken, { ...params, offset: pageParam });
+    },
     getNextPageParam: (lastPage) => {
       const { categories } = lastPage;
       if (categories.next) {
@@ -16,6 +24,7 @@ const useGetBrowseCategories = (params: IBrowseCategoryRequest) => {
       return undefined;
     },
     initialPageParam: 0,
+    enabled: !!clientCredentialToken,
   });
 };
 
