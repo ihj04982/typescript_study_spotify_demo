@@ -1,5 +1,4 @@
 import { Grid, styled, Typography } from "@mui/material";
-import PlayButton from "../../common/components/PlayButton";
 import { ISimplifiedAlbum } from "../../models/album";
 
 const AlbumListContainer = styled("div")(({ theme }) => ({
@@ -41,7 +40,6 @@ const AlbumListItemName = styled(Typography)({
 });
 
 function AlbumList({ albums }: { albums: ISimplifiedAlbum[] }) {
-  console.log(albums);
   return (
     <Grid container spacing={2}>
       <AlbumListContainer>

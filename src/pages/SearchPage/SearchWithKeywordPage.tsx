@@ -3,7 +3,7 @@ import { SearchType } from "../../models/search";
 import useSearchItemsByKeyword from "../../hooks/useSearchItemsByKeyword";
 import ErrorMessage from "../../common/components/ErrorMessage";
 import LoadingSpinner from "../../common/components/LoadingSpinner";
-import Grid from "@mui/material/Grid";
+import { Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TopResult from "./TopResult";
 import SongsList from "./SongsList";
@@ -46,20 +46,20 @@ const SearchWithKeywordPage = () => {
 
   return (
     <div>
-      <Stack direction={{ xs: "column", md: "row" }} spacing={2} sx={{ mb: 2 }}>
-        <div style={{ flex: 1 }}>
+      <Grid container spacing={2} sx={{ mb: 2 }}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Typography variant="h1" sx={{ marginBottom: "0.5rem" }}>
             Top Result
           </Typography>
           <TopResult track={page?.tracks?.items?.[0]} />
-        </div>
-        <div style={{ flex: 1 }}>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Typography variant="h1" sx={{ marginBottom: "0.5rem" }}>
             Songs
           </Typography>
           <SongsList tracks={page?.tracks?.items || []} />
-        </div>
-      </Stack>
+        </Grid>
+      </Grid>
       <div>
         {page?.artists?.items && page?.artists?.items?.length > 0 && (
           <div>

@@ -46,7 +46,6 @@ const PlayButtonContainer = styled("div")({
 });
 
 function ArtistList({ artists }: { artists: IArtist[] }) {
-  console.log(artists);
   return (
     <Grid container spacing={2}>
       <ArtistListContainer>

@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router";
-import { Box, Button, Card, styled, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import LibraryHead from "./LibraryHead";
@@ -25,11 +25,10 @@ const Sidebar = styled("div")(({ theme }) => ({
   },
 }));
 
-const ContentBox = styled(Box)(({ theme }) => ({
+const SidebarContentBox = styled(Box)(({ theme }) => ({
   borderRadius: "8px",
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,
-  width: "100%",
   padding: "20px",
   marginBottom: "8px",
   marginRight: "8px",
@@ -39,10 +38,25 @@ const ContentBox = styled(Box)(({ theme }) => ({
   minHeight: 0,
 }));
 
+const MainContentBox = styled(Box)(({ theme }) => ({
+  borderRadius: "8px",
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.text.primary,
+  flex: 1,
+  padding: "20px",
+  marginBottom: "8px",
+  boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "column",
+  minHeight: 0,
+  minWidth: 0,
+}));
+
 const OutletContainer = styled("div")({
   flex: 1,
   minHeight: 0,
   overflow: "auto",
+  overflowX: "auto",
   "&::-webkit-scrollbar": {
     display: "none",
     msOverflowStyle: "none",
@@ -74,7 +88,7 @@ const AppLayout = () => {
   return (
     <Layout>
       <Sidebar>
-        <ContentBox>
+        <SidebarContentBox>
           <NavList>
             <StyledNavLink to="/">
               <HomeIcon />
@@ -89,18 +103,18 @@ const AppLayout = () => {
               </Typography>
             </StyledNavLink>
           </NavList>
-        </ContentBox>
-        <ContentBox height={"100%"}>
+        </SidebarContentBox>
+        <SidebarContentBox height={"100%"}>
           <LibraryHead />
           <Library />
-        </ContentBox>
+        </SidebarContentBox>
       </Sidebar>
-      <ContentBox>
+      <MainContentBox>
         <Navbar />
         <OutletContainer>
           <Outlet />
         </OutletContainer>
-      </ContentBox>
+      </MainContentBox>
     </Layout>
   );
 };

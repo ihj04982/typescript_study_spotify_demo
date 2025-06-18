@@ -8,7 +8,7 @@ const LoginButton = () => {
   };
 
   return (
-    <Button variant="contained" color="secondary" size="large" onClick={login}>
+    <Button variant="contained" color="secondary" size="large" onClick={login} className="login-button">
       Login
     </Button>
   );

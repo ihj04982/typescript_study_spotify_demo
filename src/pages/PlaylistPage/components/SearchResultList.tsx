@@ -28,13 +28,16 @@ const ActionIconButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const SearchResultList = ({ playlistId, list, pageIndex, keyword }: ISearchResultListProps) => {
-  const { mutate: addItemsToPlaylist } = useAddItemsToPlaylist(playlistId);
+  const { mutate: addItemsToPlaylist } = useAddItemsToPlaylist();
 
   const handleAddItemsToPlaylist = (item: ITrack) => {
     if (item.uri) {
       addItemsToPlaylist({
-        uris: [item.uri],
-        position: 0,
+        playlist_id: playlistId,
+        params: {
+          uris: [item.uri],
+          position: 0,
+        },
       });
     }
   };
