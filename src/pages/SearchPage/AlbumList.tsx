@@ -26,8 +26,8 @@ const AlbumListItem = styled("div")(({ theme }) => ({
 }));
 
 const AlbumListItemImage = styled("img")({
-  width: "200px",
-  height: "200px",
+  width: "180px",
+  height: "180px",
   objectFit: "cover",
   borderRadius: "4px",
   marginBottom: "1rem",

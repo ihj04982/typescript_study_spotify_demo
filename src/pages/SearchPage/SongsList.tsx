@@ -3,15 +3,15 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { AddCircleOutline, MoreHoriz } from "@mui/icons-material";
-import { Divider, Menu, MenuProps, MenuItem, styled } from "@mui/material";
+import { Menu, MenuProps, styled } from "@mui/material";
 import { formatDuration } from "../../utils/format";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useGetCurrentUserPlaylists from "../../hooks/useGetCurrentUserPlaylists";
-import { useInView } from "react-intersection-observer";
 import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
 import useAddItemsToPlaylist from "../../hooks/useAddItemsToPlaylist";
-import { IPlaylist, ISimplifiedPlaylist } from "../../models/playlist";
+import { ISimplifiedPlaylist } from "../../models/playlist";
 import { ITrack } from "../../models/track";
+import PlaylistMenu from "./PlaylistMenu";
 
 const SongsContainer = styled("div")({
   display: "flex",
@@ -62,15 +62,6 @@ const SongsListItemText = styled(Typography)(({ theme }) => ({
 
 const SongsListItemTitle = styled(SongsListItemText)(({ theme }) => ({
   fontWeight: 500,
-}));
-
-const PlaylistMenu = styled(Menu)<MenuProps>(() => ({
-  width: "200px",
-  height: "250px",
-  "& .MuiPaper-root": {
-    scrollbarWidth: "none",
-  },
-  minWidth: "0",
 }));
 
 function SongsList({ tracks }: { tracks: any[] }) {
@@ -131,36 +122,10 @@ function SongsList({ tracks }: { tracks: any[] }) {
                 setIsMenuOpen(false);
                 setSelectedTrack(null);
               }}
-            >
-              {!!user ? (
-                <>
-                  <ListItemText primary="Add to playlist" />
-                  <Divider />
-                  {playlists?.pages
-                    .flatMap((page) => page.items)
-                    .map((playlist) => (
-                      <MenuItem key={playlist.id} onClick={() => handleAddItemsToPlaylist(playlist)}>
-                        <Typography
-                          noWrap
-                          sx={{
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                            width: "100%",
-                            minWidth: 0,
-                          }}
-                        >
-                          {playlist.name}
-                        </Typography>
-                      </MenuItem>
-                    ))}
-                </>
-              ) : (
-                <MenuItem disabled>
-                  <Typography>Login to add to playlist</Typography>
-                </MenuItem>
-              )}
-            </PlaylistMenu>
+              user={user}
+              playlists={playlists}
+              handleAddItemsToPlaylist={handleAddItemsToPlaylist}
+            />
             <ListItemText secondary={formatDuration(track.duration_ms || 0)} />
             <IconButton sx={{ color: "text.secondary" }} size="small">
               <MoreHoriz />
