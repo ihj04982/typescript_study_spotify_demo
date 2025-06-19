@@ -7,7 +7,6 @@ import { Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TopResult from "./TopResult";
 import SongsList from "./SongsList";
-import { Stack } from "@mui/material";
 import ArtistList from "./ArtistList";
 import AlbumList from "./AlbumList";
 
