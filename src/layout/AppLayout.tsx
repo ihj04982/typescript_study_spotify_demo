@@ -1,10 +1,12 @@
-import { NavLink, Outlet } from "react-router";
-import { Box, styled, Typography } from "@mui/material";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
+import { BottomNavigationAction, BottomNavigation, Box, styled, Typography, Paper } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import LibraryHead from "./LibraryHead";
 import Library from "./Library";
 import Navbar from "./Navbar";
+import { useState } from "react";
+import { Bookmark, BookmarkBorder } from "@mui/icons-material";
 
 const Layout = styled("div")({
   display: "flex",
@@ -50,6 +52,11 @@ const MainContentBox = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   minHeight: 0,
   minWidth: 0,
+  [theme.breakpoints.down("sm")]: {
+    borderRadius: 0,
+    marginBottom: 0,
+    paddingBottom: "50px",
+  },
 }));
 
 const OutletContainer = styled("div")({
@@ -63,6 +70,16 @@ const OutletContainer = styled("div")({
     scrollbarWidth: "none",
   },
 });
+
+const MobileNavbar = styled(Paper)(({ theme }) => ({
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
+  position: "fixed",
+  bottom: 0,
+  left: 0,
+  width: "100%",
+}));
 
 const NavList = styled("ul")({
   listStyle: "none",
@@ -85,6 +102,8 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 }));
 
 const AppLayout = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <Layout>
       <Sidebar>
@@ -115,6 +134,19 @@ const AppLayout = () => {
           <Outlet />
         </OutletContainer>
       </MainContentBox>
+      <MobileNavbar>
+        <BottomNavigation
+          showLabels
+          value={location.pathname.split("/")[1]}
+          onChange={(e, newValue) => {
+            navigate(`/${newValue}`);
+          }}
+        >
+          <BottomNavigationAction label="Home" icon={<HomeIcon />} value={""} />
+          <BottomNavigationAction label="Search" icon={<SearchIcon />} value={"search"} />
+          <BottomNavigationAction label="Library" icon={<Bookmark />} value={"library"} />
+        </BottomNavigation>
+      </MobileNavbar>
     </Layout>
   );
 };
