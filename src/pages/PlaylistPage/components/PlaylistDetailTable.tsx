@@ -1,8 +1,19 @@
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography, styled } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { PAGE_LIMIT } from "../../../configs/commonConfig";
 import DesktopPlaylistItem from "./DesktopPlaylistItem";
 import { InfiniteData } from "@tanstack/react-query";
 import { TGetPlaylistItemsResponse } from "../../../models/playlist";
+import MobilePlaylistItem from "./MobilePlaylistItem";
 
 const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
   border: "none",
@@ -19,6 +30,22 @@ interface PlaylistDetailTableProps {
 }
 
 const PlaylistDetailTable = ({ playlistItems }: PlaylistDetailTableProps) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  if (isMobile) {
+    return (
+      <Table>
+        <TableBody>
+          {playlistItems?.pages.map((page, pageIndex) =>
+            page.items.map((item, itemIndex) => (
+              <MobilePlaylistItem key={pageIndex * PAGE_LIMIT + itemIndex + 1} item={item} />
+            ))
+          )}
+        </TableBody>
+      </Table>
+    );
+  }
   return (
     <Table stickyHeader>
       <TableHead>
@@ -33,11 +60,7 @@ const PlaylistDetailTable = ({ playlistItems }: PlaylistDetailTableProps) => {
       <TableBody>
         {playlistItems?.pages.map((page, pageIndex) =>
           page.items.map((item, itemIndex) => (
-            <DesktopPlaylistItem
-              key={pageIndex * PAGE_LIMIT + itemIndex + 1}
-              index={pageIndex * PAGE_LIMIT + itemIndex + 1}
-              item={item}
-            />
+            <DesktopPlaylistItem key={pageIndex * PAGE_LIMIT + itemIndex + 1} item={item} />
           ))
         )}
       </TableBody>

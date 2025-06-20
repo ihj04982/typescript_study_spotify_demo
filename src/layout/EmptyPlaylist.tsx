@@ -1,5 +1,6 @@
 import { Card, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import useCreatePlaylist from "../hooks/useCreatePlaylist";
 
 const EmptyPlaylistCard = styled(Card)({
   padding: "20px",
@@ -21,14 +22,22 @@ const CreatePlaylistButton = styled(Button)(({ theme }) => ({
   marginTop: "20px",
 }));
 
-const EmptyPlaylist = () => (
-  <EmptyPlaylistCard>
-    <Typography variant="h2" fontWeight={700}>
-      Create your first playlist
-    </Typography>
-    <Typography>It's easy, we will help you</Typography>
-    <CreatePlaylistButton>Create playlist</CreatePlaylistButton>
-  </EmptyPlaylistCard>
-);
+const EmptyPlaylist = () => {
+  const { mutate: createPlaylist } = useCreatePlaylist();
+
+  const handleCreatePlaylist = () => {
+    createPlaylist({ name: "내 플레이리스트" });
+  };
+
+  return (
+    <EmptyPlaylistCard>
+      <Typography variant="h2" fontWeight={700}>
+        Create your first playlist
+      </Typography>
+      <Typography>It's easy, we will help you</Typography>
+      <CreatePlaylistButton onClick={handleCreatePlaylist}>Create playlist</CreatePlaylistButton>
+    </EmptyPlaylistCard>
+  );
+};
 
 export default EmptyPlaylist;

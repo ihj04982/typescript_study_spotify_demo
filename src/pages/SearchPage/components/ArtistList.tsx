@@ -1,6 +1,6 @@
 import { Grid, styled, Typography } from "@mui/material";
-import { IArtist } from "../../models/artist";
-import PlayButton from "../../common/components/PlayButton";
+import { IArtist } from "../../../models/artist";
+import PlayButton from "../../../common/components/PlayButton";
 
 const ArtistListContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -8,8 +8,13 @@ const ArtistListContainer = styled("div")(({ theme }) => ({
   padding: 0,
   margin: 0,
   listStyle: "none",
-  overflow: "hidden",
+  overflow: "auto ",
   whiteSpace: "nowrap",
+  "&::-webkit-scrollbar": {
+    display: "none",
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
+  },
 }));
 
 const ArtistListItem = styled("div")(({ theme }) => ({

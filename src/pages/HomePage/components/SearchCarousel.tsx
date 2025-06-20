@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import { Box, Typography, styled, IconButton } from "@mui/material";
-import { alpha } from "@mui/material/styles";
+import { Box, Typography, styled, IconButton, alpha } from "@mui/material";
 import { NavigateNext, NavigateBefore } from "@mui/icons-material";
 import useSearchItemsByKeyword from "../../../hooks/useSearchItemsByKeyword";
 import LoadingSpinner from "../../../common/components/LoadingSpinner";

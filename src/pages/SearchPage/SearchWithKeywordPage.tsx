@@ -5,10 +5,10 @@ import ErrorMessage from "../../common/components/ErrorMessage";
 import LoadingSpinner from "../../common/components/LoadingSpinner";
 import { Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import TopResult from "./TopResult";
-import SongsList from "./SongsList";
-import ArtistList from "./ArtistList";
-import AlbumList from "./AlbumList";
+import TopResult from "./components/TopResult";
+import SongsList from "./components/SongsList";
+import ArtistList from "./components/ArtistList";
+import AlbumList from "./components/AlbumList";
 
 const SearchWithKeywordPage = () => {
   const { keyword } = useParams();

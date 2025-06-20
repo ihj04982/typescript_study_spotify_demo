@@ -1,5 +1,5 @@
 import { Grid, styled, Typography } from "@mui/material";
-import { ISimplifiedAlbum } from "../../models/album";
+import { ISimplifiedAlbum } from "../../../models/album";
 
 const AlbumListContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -7,8 +7,13 @@ const AlbumListContainer = styled("div")(({ theme }) => ({
   padding: 0,
   margin: 0,
   listStyle: "none",
-  overflow: "hidden",
+  overflow: "auto",
   whiteSpace: "nowrap",
+  "&::-webkit-scrollbar": {
+    display: "none",
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
+  },
 }));
 
 const AlbumListItem = styled("div")(({ theme }) => ({

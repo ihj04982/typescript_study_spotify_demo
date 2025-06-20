@@ -6,7 +6,7 @@ import useExchangeToken from "./hooks/useExchangeToken";
 
 const AppLayout = React.lazy(() => import("./layout/AppLayout"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
-const SearchPage = React.lazy(() => import("./pages/SearchPage/SearchPage"));
+const SearchPage = React.lazy(() => import("./pages/SearchPage/components/SearchPage"));
 const SearchWithKeywordPage = React.lazy(() => import("./pages/SearchPage/SearchWithKeywordPage"));
 const PlaylistDetailPage = React.lazy(() => import("./pages/PlaylistPage/PlaylistDetailPage"));
 const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));

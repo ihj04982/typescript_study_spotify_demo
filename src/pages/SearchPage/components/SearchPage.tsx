@@ -1,7 +1,7 @@
 import { Card, Grid, ListItem, styled, Typography } from "@mui/material";
-import ErrorMessage from "../../common/components/ErrorMessage";
-import LoadingSpinner from "../../common/components/LoadingSpinner";
-import useGetBrowseCategories from "../../hooks/useGetBrowseCategories";
+import ErrorMessage from "../../../common/components/ErrorMessage";
+import LoadingSpinner from "../../../common/components/LoadingSpinner";
+import useGetBrowseCategories from "../../../hooks/useGetBrowseCategories";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -34,7 +34,7 @@ const CategoryImage = styled("img")({
   width: "45%",
   right: 0,
   transform: "rotate(25deg) translate(18%,-2%)",
-  zIndex: 1,
+  zIndex: 0,
 });
 
 function getColorFromId(id: string) {
@@ -78,7 +78,7 @@ const SearchPage = () => {
                   fontWeight={700}
                   sx={{
                     wordBreak: "keep-all",
-                    zIndex: 2,
+                    zIndex: 1,
                   }}
                 >
                   {category.name}

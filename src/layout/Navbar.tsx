@@ -6,6 +6,15 @@ import { useLocation, useNavigate } from "react-router";
 import { Search } from "@mui/icons-material";
 import { useState } from "react";
 
+const NavbarContainer = styled("div")({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "10px",
+  height: "50px",
+  gap: "10px",
+});
+
 const SearchTextField = styled(TextField)({
   width: "100%",
   maxWidth: "450px",
@@ -34,10 +43,11 @@ const Navbar = () => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center" gap={2}>
-      <Box flex={1} display="flex" alignItems="center">
+    <NavbarContainer>
+      <Box flex={1} marginBottom={0}>
         {isSearchPage && (
           <SearchTextField
+            sx={{ marginBottom: 0 }}
             slotProps={{
               input: {
                 startAdornment: (
@@ -55,7 +65,7 @@ const Navbar = () => {
         )}
       </Box>
       <Box flexShrink={0}>{userProfile ? <UserProfile userProfile={userProfile} /> : <LoginButton />}</Box>
-    </Box>
+    </NavbarContainer>
   );
 };
 

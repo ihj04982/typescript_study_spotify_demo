@@ -4,13 +4,13 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { AddCircleOutline, MoreHoriz } from "@mui/icons-material";
 import { Menu, MenuProps, styled } from "@mui/material";
-import { formatDuration } from "../../utils/format";
+import { formatDuration } from "../../../utils/format";
 import { useState } from "react";
-import useGetCurrentUserPlaylists from "../../hooks/useGetCurrentUserPlaylists";
-import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
-import useAddItemsToPlaylist from "../../hooks/useAddItemsToPlaylist";
-import { ISimplifiedPlaylist } from "../../models/playlist";
-import { ITrack } from "../../models/track";
+import useGetCurrentUserPlaylists from "../../../hooks/useGetCurrentUserPlaylists";
+import useGetCurrentUserProfile from "../../../hooks/useGetCurrentUserProfile";
+import useAddItemsToPlaylist from "../../../hooks/useAddItemsToPlaylist";
+import { ISimplifiedPlaylist } from "../../../models/playlist";
+import { ITrack } from "../../../models/track";
 import PlaylistMenu from "./PlaylistMenu";
 
 const SongsContainer = styled("div")({

@@ -1,12 +1,11 @@
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
-import { BottomNavigationAction, BottomNavigation, Box, styled, Typography, Paper } from "@mui/material";
+import { BottomNavigationAction, BottomNavigation, Box, styled, Typography, Paper, alpha } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import LibraryHead from "./LibraryHead";
 import Library from "./Library";
 import Navbar from "./Navbar";
-import { useState } from "react";
-import { Bookmark, BookmarkBorder } from "@mui/icons-material";
+import { Bookmark } from "@mui/icons-material";
 
 const Layout = styled("div")({
   display: "flex",
@@ -42,7 +41,7 @@ const SidebarContentBox = styled(Box)(({ theme }) => ({
 
 const MainContentBox = styled(Box)(({ theme }) => ({
   borderRadius: "8px",
-  backgroundColor: theme.palette.background.paper,
+  background: `linear-gradient(to bottom, rgba(255,255,255,0.2),${alpha(theme.palette.background.paper, 1)} 20%)`,
   color: theme.palette.text.primary,
   flex: 1,
   padding: "20px",
@@ -79,6 +78,7 @@ const MobileNavbar = styled(Paper)(({ theme }) => ({
   bottom: 0,
   left: 0,
   width: "100%",
+  zIndex: 1000,
 }));
 
 const NavList = styled("ul")({

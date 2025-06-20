@@ -1,6 +1,6 @@
 import { Menu, MenuItem, ListItemText, Divider, Typography, styled } from "@mui/material";
-import { ISimplifiedPlaylist, TGetCurrentUserPlaylistsResponse } from "../../models/playlist";
-import { IUser } from "../../models/user";
+import { ISimplifiedPlaylist, TGetCurrentUserPlaylistsResponse } from "../../../models/playlist";
+import { IUser } from "../../../models/user";
 
 interface PlaylistMenuProps {
   open: boolean;
